@@ -7,10 +7,28 @@ import React from 'react';
 
 
 function App() {
+
+  function handleEditProfileClick() {
+    //const openButtonEdit = document.querySelector('.profile__edit-button');
+    const popupEditProfile =  document.querySelector('.popup_function_edit');
+    popupEditProfile.classList.add('popup_opened');
+    //document.addEventListener('keydown', this._handleEscClose);
+  }
+
+  function handleAddPlaceClick() {
+      const popupAddPlace =  document.querySelector('.popup_function_add');
+      popupAddPlace.classList.add('popup_opened');
+  }
+
+  function handleEditAvatarClick() {
+    const popupEditAvatar =  document.querySelector('.popup_function_update-avatar');
+    popupEditAvatar.classList.add('popup_opened');
+  }
+
   return (
     <div className="page">
       <Header />
-      <Main />
+      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} />
       <Footer />
 
       <PopupWithForm name="edit" title="Редактировать профиль">
