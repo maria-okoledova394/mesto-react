@@ -9,21 +9,20 @@ import React from 'react';
 function App() {
 
   function handleEditProfileClick() {
-    //const openButtonEdit = document.querySelector('.profile__edit-button');
-    const popupEditProfile =  document.querySelector('.popup_function_edit');
-    popupEditProfile.classList.add('popup_opened');
-    //document.addEventListener('keydown', this._handleEscClose);
+    setEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-      const popupAddPlace =  document.querySelector('.popup_function_add');
-      popupAddPlace.classList.add('popup_opened');
+    setAddPlacePopupOpen(true);
   }
 
   function handleEditAvatarClick() {
-    const popupEditAvatar =  document.querySelector('.popup_function_update-avatar');
-    popupEditAvatar.classList.add('popup_opened');
+    setEditAvatarPopupOpen(true);
   }
+
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
 
   return (
     <div className="page">
@@ -31,7 +30,7 @@ function App() {
       <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} />
       <Footer />
 
-      <PopupWithForm name="edit" title="Редактировать профиль">
+      <PopupWithForm name="edit" title="Редактировать профиль" isOpen={isEditProfilePopupOpen}>
           <div className="popup__field">
             <input id="name-input" className="popup__input popup__input_content_name popup__input_function_edit" name="name" placeholder="Имя" type="text" pattern="^[ \-a-zA-Zа-яА-Я]+$" minLength="2" maxLength="40" required />
             <span className="popup__error name-input-error"></span>
@@ -42,14 +41,14 @@ function App() {
           </div>
       </PopupWithForm>
 
-      <PopupWithForm name="update-avatar" title="Обновить аватар">
+      <PopupWithForm name="update-avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen}>
       <div className="popup__field">
             <input id="avatar-input" className="popup__input popup__input_content_avatar popup__input_function_update-avatar" name="avatar" placeholder="Аватар" type="url" required />
             <span className="popup__error avatar-input-error"></span>
           </div>
       </PopupWithForm>
 
-      <PopupWithForm name="add" title="Новое место">
+      <PopupWithForm name="add" title="Новое место" isOpen={isAddPlacePopupOpen}>
           <div className="popup__field">
             <input id="place-input" className="popup__input popup__input_content_place popup__input_function_add" name="name" placeholder="Название" minLength="2" maxLength="30" required />
             <span className="popup__error place-input-error"></span>

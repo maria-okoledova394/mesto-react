@@ -3,7 +3,7 @@ import React from 'react';
 
 function PopupWithForm(props) {
     return (
-      <div className={`popup popup_function_${props.name}`}>
+      <div className={`popup popup_function_${props.name} ${props.isOpen ? "popup_opened" : ""}`}>
         <form className={`popup__form popup__container popup__container_function_${props.name} popup__container_type_form`} noValidate>
           <button className="popup__close-button" type="button"></button>
           <h2 className={`popup__title popup__title_function_${props.name}`}>{props.title}</h2>
@@ -15,3 +15,5 @@ function PopupWithForm(props) {
   }
   
   export default PopupWithForm;
+
+  //{isLoading ? <Spinner /> : cards.map(({id, ...card}) => <Card key={id} {...card} />)}
