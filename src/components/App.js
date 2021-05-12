@@ -1,6 +1,7 @@
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
+import React from 'react';
 
 function App() {
   return (
@@ -10,15 +11,15 @@ function App() {
       <Footer />
 
       <div className="popup popup_function_edit">
-        <form className="popup__form popup__container popup__container_function_edit popup__container_type_form" novalidate>
+        <form className="popup__form popup__container popup__container_function_edit popup__container_type_form" noValidate>
           <button className="popup__close-button" type="button"></button>
           <h2 className="popup__title popup__title_function_edit">Редактировать профиль</h2>
           <div className="popup__field">
-            <input id="name-input" className="popup__input popup__input_content_name popup__input_function_edit" name="name" placeholder="Имя" type="text" pattern="^[ \-a-zA-Zа-яА-Я]+$" minlength="2" maxlength="40" required />
+            <input id="name-input" className="popup__input popup__input_content_name popup__input_function_edit" name="name" placeholder="Имя" type="text" pattern="^[ \-a-zA-Zа-яА-Я]+$" minLength="2" maxLength="40" required />
             <span className="popup__error name-input-error"></span>
           </div>
           <div className="popup__field">
-            <input id="about-input" className="popup__input popup__input_content_about popup__input_function_edit" name="about" placeholder="Деятельность" minlength="2" maxlength="200" required />
+            <input id="about-input" className="popup__input popup__input_content_about popup__input_function_edit" name="about" placeholder="Деятельность" minLength="2" maxLength="200" required />
             <span className="popup__error about-input-error"></span>
           </div>
           <button className="popup__button popup__button-save popup__button-save_function_edit" type="submit">Сохранить</button>
@@ -26,7 +27,7 @@ function App() {
       </div>
 
       <div className="popup popup_function_update-avatar">
-        <form className="popup__form popup__container popup__container_function_update-avatar popup__container_type_form" novalidate>
+        <form className="popup__form popup__container popup__container_function_update-avatar popup__container_type_form" noValidate>
           <button className="popup__close-button" type="button"></button>
           <h2 className="popup__title popup__title_function_update-avatar">Обновить аватар</h2>
           <div className="popup__field">
@@ -38,11 +39,11 @@ function App() {
       </div>
 
       <div className="popup popup_function_add">
-        <form className="popup__form popup__container popup__container_function_add popup__container_type_form" novalidate>
+        <form className="popup__form popup__container popup__container_function_add popup__container_type_form" noValidate>
           <button className="popup__close-button " type="button"></button>
           <h2 className="popup__title popup__title_function_add">Новое место</h2>
           <div className="popup__field">
-            <input id="place-input" className="popup__input popup__input_content_place popup__input_function_add" name="name" placeholder="Название" minlength="2" maxlength="30" required />
+            <input id="place-input" className="popup__input popup__input_content_place popup__input_function_add" name="name" placeholder="Название" minLength="2" maxLength="30" required />
             <span className="popup__error place-input-error"></span>
           </div>
           <div className="popup__field">
@@ -54,7 +55,7 @@ function App() {
       </div>
 
       <div className="popup popup_function_delete">
-        <form className="popup__form popup__container popup__container_function_delete popup__container_type_form" novalidate>
+        <form className="popup__form popup__container popup__container_function_delete popup__container_type_form" noValidate>
           <button className="popup__close-button " type="button"></button>
           <h2 className="popup__title popup__title_function_delete">Вы уверены?</h2>
           <button className="popup__button popup__button-save popup__button-save_function_delete popup__button_disabled" type="submit" disabled>Да</button>

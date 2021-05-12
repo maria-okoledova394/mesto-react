@@ -1,8 +1,29 @@
+import React from 'react';
+
 function Main() {
+
+    function handleEditProfileClick() {
+        //const openButtonEdit = document.querySelector('.profile__edit-button');
+        const popupEditProfile =  document.querySelector('.popup_function_edit');
+        popupEditProfile.classList.add('popup_opened');
+        //document.addEventListener('keydown', this._handleEscClose);
+    }
+
+    function handleAddPlaceClick() {
+        const popupAddPlace =  document.querySelector('.popup_function_add');
+        popupAddPlace.classList.add('popup_opened');
+    }
+
+    function handleEditAvatarClick() {
+        const popupEditAvatar =  document.querySelector('.popup_function_update-avatar');
+        popupEditAvatar.classList.add('popup_opened');
+    }
+
+
     return (
         <main>
             <section className="profile">
-            <button className="profile__avatar-container profile__update-avatar-button">
+            <button className="profile__avatar-container profile__update-avatar-button" onClick={handleEditAvatarClick} type="button">
                 <img className="profile__avatar" src="#" alt="Аватар" />
                 <div className="profile__avatar-overlay">
                 <i className="profile__icon"></i>
@@ -11,10 +32,10 @@ function Main() {
             
             <div className="profile__info">
                 <h1 className="profile__title">Жак-Ив Кусто</h1>
-                <p className="profile__subtitle">Исследователь океана</p>
-                <button className="profile__edit-button" type="button"></button>
+                <p className="profile__subtitle">Исследователь океана кар</p>
+                <button className="profile__edit-button" onClick={handleEditProfileClick} type="button"></button>
             </div>
-            <button className="profile__add-button" type="button"></button>
+            <button className="profile__add-button" onClick={handleAddPlaceClick} type="button"></button>
             </section>
 
             <section className="card-list"></section>
