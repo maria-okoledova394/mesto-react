@@ -7,6 +7,8 @@ function Main(props) {
     const [userDescription, setuserDescription] = React.useState("Исследователь океана кар");
     const [userAvatar, setuserAvatar] = React.useState("");
 
+    const [cards, setCards] = React.useState([]);
+
     React.useEffect(() => {
         api.getProfileInfo()
         .then (data => {
@@ -14,8 +16,13 @@ function Main(props) {
           setuserDescription(data.about);
           setuserAvatar(data.avatar);
         })
+
+        api.getInitialCards()
+        .then (data => {
+          setCards(data);
+        })
+
       });
-      
 
     return (
         <main>
@@ -35,21 +42,22 @@ function Main(props) {
             <button className="profile__add-button" onClick={props.onEditAvatar} type="button"></button>
             </section>
 
-            <section className="card-list"></section>
-
-            <template id="elements" className="elements">
-            <div className="elements__element">
-                <img className="elements__image" alt="#" src="#" />
-                <div className="elements__info">
-                <h2 className="elements__title"></h2>
-                <div className="elements__like-container">
-                    <button className="elements__like-button elements__like-button_status_notactive" type="button"></button>
-                    <p className="elements__like-count"></p>
+            <section className="card-list">
+              {cards.map((card) => {
+                return(
+                <div className="elements__element" key={card._id}>
+                  <img className="elements__image" alt={card.name} src={card.link} />
+                  <div className="elements__info">
+                    <h2 className="elements__title">{card.name}</h2>
+                    <div className="elements__like-container">
+                      <button className="elements__like-button elements__like-button_status_notactive" type="button"></button>
+                      <p className="elements__like-count">{card.likes.length}</p>
+                    </div>
+                    <button className="elements__delete-button" type="button"></button>
+                  </div>
                 </div>
-                <button className="elements__delete-button" type="button"></button>
-                </div>
-            </div>
-            </template>
+              )})}
+            </section>
         </main>
     );
   }

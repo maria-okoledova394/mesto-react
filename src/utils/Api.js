@@ -1,6 +1,5 @@
 const onResult = (res) =>{
   if(res.ok){
-    console.log("ok");
     return res.json();    
   }
   return Promise.reject('Упс... Ошибочка :(')
