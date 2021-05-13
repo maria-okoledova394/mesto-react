@@ -1,5 +1,6 @@
 import React from 'react';
 import { api } from '../utils/Api.js';
+import Card from './Card.js';
 
 function Main(props) {
 
@@ -45,17 +46,7 @@ function Main(props) {
             <section className="card-list">
               {cards.map((card) => {
                 return(
-                <div className="elements__element" key={card._id}>
-                  <img className="elements__image" alt={card.name} src={card.link} />
-                  <div className="elements__info">
-                    <h2 className="elements__title">{card.name}</h2>
-                    <div className="elements__like-container">
-                      <button className="elements__like-button elements__like-button_status_notactive" type="button"></button>
-                      <p className="elements__like-count">{card.likes.length}</p>
-                    </div>
-                    <button className="elements__delete-button" type="button"></button>
-                  </div>
-                </div>
+                  <Card key={card._id} props={card} />
               )})}
             </section>
         </main>
