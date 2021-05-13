@@ -23,7 +23,7 @@ function Main(props) {
           setCards(data);
         })
 
-      });
+      }, []);
 
     return (
         <main>
