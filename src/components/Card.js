@@ -2,13 +2,13 @@ import React from 'react';
 
 function Card(props) {
 
-function hendleClick() {
+function handleClick() {
     props.onCardClick(props.card)
 }
 
     return (
-        <div className="elements__element" onClick={hendleClick}>
-            <img className="elements__image" alt={props.card.name} src={props.card.link} />
+        <div className="elements__element">
+            <img className="elements__image" alt={props.card.name} src={props.card.link} onClick={handleClick} />
             <div className="elements__info">
                 <h2 className="elements__title">{props.card.name}</h2>
                 <div className="elements__like-container">

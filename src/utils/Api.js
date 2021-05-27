@@ -1,21 +1,21 @@
-const onResult = (res) =>{
-  if(res.ok){
-    return res.json();    
-  }
-  return Promise.reject('Упс... Ошибочка :(')
-}
-  
 class Api{
     constructor(config) {
       this._url = config.url;
       this._headers = config.headers;
+    }
+
+    _checkResponse = (res) =>{
+      if(res.ok){
+        return res.json();    
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
     }
   
     getInitialCards() {
       return fetch(`${this._url}cards`, {
           method: "GET",
           headers: this._headers
-        }).then(onResult)
+        }).then(this._checkResponse)
     }
 
     addCard(data){
@@ -24,7 +24,7 @@ class Api{
         headers: this._headers,
         body: JSON.stringify(data)
       })
-      .then(onResult)
+      .then(this._checkResponse)
     }
 
     removeCard(_id) {
@@ -32,14 +32,14 @@ class Api{
         method: "DELETE",
         headers: this._headers,
       })
-      .then(onResult)
+      .then(this._checkResponse)
     }
 
     getProfileInfo() {
       return fetch(`${this._url}users/me`, {
           method: "GET",
           headers: this._headers
-        }).then(onResult)
+        }).then(this._checkResponse)
     }
 
     changeProfileInfo(data) {
@@ -47,7 +47,7 @@ class Api{
           method: "PATCH",
           headers: this._headers,
           body: JSON.stringify(data)
-        }).then(onResult)
+        }).then(this._checkResponse)
     }
 
     updateAvatar(data) {
@@ -55,7 +55,7 @@ class Api{
           method: "PATCH",
           headers: this._headers,
           body: JSON.stringify(data)
-        }).then(onResult)
+        }).then(this._checkResponse)
     }
 
     likeCard(_id) {
@@ -63,7 +63,7 @@ class Api{
         method: "PUT",
         headers: this._headers,
       })
-      .then(onResult)
+      .then(this._checkResponse)
     }
 
     removeLike(_id) {
@@ -71,7 +71,7 @@ class Api{
         method: "DELETE",
         headers: this._headers,
       })
-      .then(onResult)
+      .then(this._checkResponse)
     }
 }
 

@@ -1,26 +1,32 @@
 import React from 'react';
-import { api } from '../utils/Api.js';
+import { api } from '../utils/api.js';
 import Card from './Card.js';
 
 function Main(props) {
 
-    const [userName, setuserName] = React.useState("Жак-Ив Кусто");
-    const [userDescription, setuserDescription] = React.useState("Исследователь океана кар");
-    const [userAvatar, setuserAvatar] = React.useState("");
+    const [userName, setUserName] = React.useState("Жак-Ив Кусто");
+    const [userDescription, setUserDescription] = React.useState("Исследователь океана кар");
+    const [userAvatar, setUserAvatar] = React.useState("");
 
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
         api.getProfileInfo()
         .then (data => {
-          setuserName(data.name);
-          setuserDescription(data.about);
-          setuserAvatar(data.avatar);
+          setUserName(data.name);
+          setUserDescription(data.about);
+          setUserAvatar(data.avatar);
+        })
+        .catch(err => {
+          console.log(err);
         })
 
         api.getInitialCards()
         .then (data => {
           setCards(data);
+        })
+        .catch(err => {
+          console.log(err);
         })
 
       }, []);

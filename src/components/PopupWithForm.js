@@ -15,5 +15,3 @@ function PopupWithForm(props) {
   }
   
   export default PopupWithForm;
-
-  //{isLoading ? <Spinner /> : cards.map(({id, ...card}) => <Card key={id} {...card} />)}
