@@ -1,10 +1,15 @@
 import React from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Card(props) {
 
-function handleClick() {
-    props.onCardClick(props.card)
-}
+    const currentUser = React.useContext(CurrentUserContext);
+
+    const isOwn = props.card.owner._id === currentUser._id;
+
+    function handleClick() {
+        props.onCardClick(props.card)
+    }
 
     return (
         <div className="elements__element">
@@ -15,7 +20,7 @@ function handleClick() {
                     <button className="elements__like-button elements__like-button_status_notactive" type="button"></button>
                     <p className="elements__like-count">{props.card.likes.length}</p>
                 </div>
-                <button className="elements__delete-button" type="button"></button>
+                <button className={isOwn ? "elements__delete-button" : "elements__delete-button_status_notvisible"} type="button"></button>
             </div>
         </div>  
     );
