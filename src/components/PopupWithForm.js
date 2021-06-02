@@ -1,5 +1,4 @@
 import React from 'react';
-// TODO добавить атрибут name тегу form
 
 function PopupWithForm(props) {
     return (
