@@ -7,23 +7,9 @@ function Main(props) {
 
     const currentUser = React.useContext(CurrentUserContext);
 
-  /*  const [userName, setUserName] = React.useState("Жак-Ив Кусто");
-    const [userDescription, setUserDescription] = React.useState("Исследователь океана кар");
-    const [userAvatar, setUserAvatar] = React.useState("");*/
-
     const [cards, setCards] = React.useState([]);
 
     React.useEffect(() => {
-/*        api.getProfileInfo()
-        .then (data => {
-          setUserName(data.name);
-          setUserDescription(data.about);
-          setUserAvatar(data.avatar);
-        })
-        .catch(err => {
-          console.log(err);
-        })*/
-
         api.getInitialCards()
         .then (data => {
           setCards(data);
