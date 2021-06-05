@@ -57,6 +57,7 @@
 @import url(./blocks/popup/__container/_function/popup__container_function_delete.css);
 @import url(./blocks/popup/__container/_function/popup__container_function_update-avatar.css);
 @import url(./blocks/popup/__container/_type/popup__container_type_form.css);
+@import url(./blocks/popup/__container/_type/popup__container_type_info.css);
 @import url(./blocks/popup/__container/_type/popup__container_type_image.css);
 @import url(./blocks/popup/__close-button/popup__close-button.css);
 @import url(./blocks/popup/__title/popup__title.css);

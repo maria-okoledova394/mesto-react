@@ -2,6 +2,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Register from './Register.js';
 import Login from './Login.js';
+import InfoTooltip from './InfoTooltip.js';
 import Footer from './Footer.js';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
@@ -132,16 +133,16 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-      <Header />
+     {/* <Header />
         <Main onEditProfile={handleEditProfileClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}/>
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
         <PopupWithForm name="delete" title="Вы уверены?" />
-       <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+  <ImagePopup card={selectedCard} onClose={closeAllPopups}/>*/}
         
-       {/* <Login />*/}
+       <InfoTooltip />
       </div>
     </CurrentUserContext.Provider>
   );
