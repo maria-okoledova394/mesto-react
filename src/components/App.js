@@ -1,5 +1,6 @@
 import Register from './Register.js';
 import Login from './Login.js';
+import InfoTooltip from './InfoTooltip.js';
 import Page from './Page.js';
 import ProtectedRoute from './ProtectedRoute';
 import { Route, Switch, useHistory } from 'react-router-dom';
@@ -8,7 +9,10 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+ /* const [successRegistration, setSuccessRegistration] = useState(false);
+  const [faildRegistration, setFaildRegistration] = useState(false);*/
   const [isMistake, setIsMistake] = useState(false); //TOTO отрисовать попап с ощибкой
+  const [popup, setPopup] = useState(false);
   const [userData, setUserData] = useState({
     email: '',
     password: ''
@@ -20,7 +24,9 @@ function App() {
     checkToken();
   }, []);
 
-  const handleError = (error) => console.error(error)
+  function handleError (error) {
+    console.error(error)
+  }
 
   function onRegister({ email, password }) {
     auth.register(password, email)
@@ -29,9 +35,16 @@ function App() {
         setUserData({
           email: email
         })
-        history.push('/sign-in');
+        setIsMistake(false)
+        history.push('/sign-in')
       })
-      .catch(handleError)
+      .catch((error) => {
+        handleError(error)
+        setIsMistake(true)
+      })
+      .finally(() => {
+        setPopup(true)
+      })
   }
 
   function onLogin({ email, password }) {
@@ -43,7 +56,7 @@ function App() {
           console.log(`успешная авторизация ${token}`);
           localStorage.setItem('token', token)
           setLoggedIn(true)
-          history.push('/');
+          history.push('/')
         }
       })
       .catch(handleError)
@@ -76,16 +89,21 @@ function App() {
     localStorage.removeItem('token')
   }
 
+  function onCloseStartPopup() {
+    setPopup(false)
+  }
+
   return (
     <div className="page">
     <Switch>
-          <Route path="/sign-up">
-            <Register onRegister={onRegister} />
-          </Route>
-          <Route path="/sign-in">
-            <Login onLogin={onLogin} />
-          </Route>
-          <ProtectedRoute path="/" loggedIn={loggedIn} userData={userData} component={Page} onSignOut={onSignOut} />
+      {popup && <InfoTooltip isMistake={isMistake} onClose={onCloseStartPopup} />}
+      <Route path="/sign-up">
+        <Register onRegister={onRegister} />
+      </Route>
+      <Route path="/sign-in">
+        <Login onLogin={onLogin} />
+      </Route>
+      <ProtectedRoute path="/" loggedIn={loggedIn} userData={userData} component={Page} onSignOut={onSignOut} />
     </Switch>
     </div>
   )
