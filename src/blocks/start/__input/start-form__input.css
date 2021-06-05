@@ -1,0 +1,16 @@
+.start-form__input {
+    background-color: #000000;
+    border: 0px;
+    border-bottom: 2px solid #CCCCCC;
+    width: 100%;
+    font-size: 14px;
+    padding: 0;
+    padding-bottom: 13px;
+    color: #CCCCCC;
+    margin-bottom: 30px;
+}
+
+.start-form__input::placeholder {
+    color: #CCCCCC;
+    font-size: 14px;
+  }

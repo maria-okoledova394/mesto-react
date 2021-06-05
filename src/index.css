@@ -7,6 +7,12 @@
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
 
+@import url(./blocks/start/start-form.css);
+@import url(./blocks/start/__title/start-form__title.css);
+@import url(./blocks/start/__input/start-form__input.css);
+@import url(./blocks/start/__button/start-form__button.css);
+@import url(./blocks/start/__signin/start__signin.css);
+
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__avatar/profile__avatar.css);
 @import url(./blocks/profile/__avatar-overlay/profile__avatar-overlay.css);
