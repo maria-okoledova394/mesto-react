@@ -8,7 +8,8 @@ function InfoTooltip(props) {
         <div className="start-popup">
           <form className="popup__form popup__container popup__container_type_info">
             <button className="popup__close-button" type="button" onClick={props.onClose}></button>
-            <img className="popup__image" src={props.isMistake ? faild_registration_mark : success_registration_mark}></img>
+            <img className="popup__image" src={props.isMistake ? faild_registration_mark : success_registration_mark}
+            alt="mark"></img>
             <h2 className="popup__title popup__title_function_info">
               {props.isMistake ? "Что-то пошло не так! Попробуйте ещё раз." : "Вы успешно зарегистрировались!"}</h2>
           </form>

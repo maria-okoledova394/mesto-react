@@ -4,7 +4,10 @@ function Header(props) {
     return (
         <header className="header">
             <div className="header__logo"></div>
-            <button onClick={props.onSignOut} className="header__exit">Выйти</button>
+            <div>
+                <h2 className="header__title">{props.email}</h2>
+                <button onClick={props.onSignOut} className="header__exit">Выйти</button>
+            </div>
         </header>    
     );
   }

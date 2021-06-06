@@ -11,7 +11,7 @@ import React, { useEffect, useState } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Page(props) {
-    const userEmail = props.email; //TODO прокинуть в Header
+   // console.log(props); //TODO прокинуть в Header
 
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
@@ -131,7 +131,7 @@ function Page(props) {
     return (
         <CurrentUserContext.Provider value={currentUser}>
         <>
-            <Header onSignOut={props.onSignOut} />
+            <Header onSignOut={props.onSignOut} email={props.email}/>
             <Main onEditProfile={handleEditProfileClick} cards={cards} onCardLike={handleCardLike} onCardDelete={handleCardDelete} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}/>
             <Footer />
             <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />

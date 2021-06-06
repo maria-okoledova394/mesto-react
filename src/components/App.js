@@ -9,14 +9,9 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
- /* const [successRegistration, setSuccessRegistration] = useState(false);
-  const [faildRegistration, setFaildRegistration] = useState(false);*/
-  const [isMistake, setIsMistake] = useState(false); //TOTO отрисовать попап с ощибкой
+  const [isMistake, setIsMistake] = useState(false);
   const [popup, setPopup] = useState(false);
-  const [userData, setUserData] = useState({
-    email: '',
-    password: ''
-  });
+  const [userData, setUserData] = useState('');
 
   const history = useHistory();
 
@@ -31,10 +26,8 @@ function App() {
   function onRegister({ email, password }) {
     auth.register(password, email)
       .then((res) => {
-        const email = res.email
-        setUserData({
-          email: email
-        })
+        const email = res.data.email
+        setUserData(email)
         setIsMistake(false)
         history.push('/sign-in')
       })
@@ -47,21 +40,6 @@ function App() {
       })
   }
 
-  function onLogin({ email, password }) {
-    auth.authorize(password, email)
-      .then((res) => {
-        console.log(res)
-        const token = res.token
-        if (token) {
-          console.log(`успешная авторизация ${token}`);
-          localStorage.setItem('token', token)
-          setLoggedIn(true)
-          history.push('/')
-        }
-      })
-      .catch(handleError)
-  }
-
   function checkToken() {
     let token = localStorage.getItem('token')
     
@@ -69,9 +47,7 @@ function App() {
       auth.getContent(token)
         .then((res) => {
           if (res){
-            setUserData ({
-              email: res.email
-            })
+            setUserData(res.data.email)
             setLoggedIn(true)
             history.push("/")
           }
@@ -80,11 +56,20 @@ function App() {
     }
   }
 
+  function onLogin({ email, password }) {
+    auth.authorize(password, email)
+      .then((res) => {
+        const token = res.token
+        if (token) {
+          localStorage.setItem('token', token)
+          checkToken();
+        }
+      })
+      .catch(handleError)
+  }
+
   function onSignOut() {
-    setUserData({
-      email: '',
-      password: ''
-    })
+    setUserData('')
     setLoggedIn(false)
     localStorage.removeItem('token')
   }
@@ -103,7 +88,7 @@ function App() {
       <Route path="/sign-in">
         <Login onLogin={onLogin} />
       </Route>
-      <ProtectedRoute path="/" loggedIn={loggedIn} userData={userData} component={Page} onSignOut={onSignOut} />
+      <ProtectedRoute path="/" loggedIn={loggedIn} email={userData} component={Page} onSignOut={onSignOut} />
     </Switch>
     </div>
   )
